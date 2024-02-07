@@ -12,29 +12,35 @@ function Square({ squares, onSquareClick }) {
   );
 }
 
-export default function Board() {
+export default function Board({ xIsNext, setXIsNext }) {
   const [squares, setSquares] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
-
   function handleClick(i) {
     const nextSquares = [...squares];
-    if (nextSquares[i] || calculateWinner(nextSquares)) {
+    if (nextSquares[i] || calculateWinner(squares)) {
       return;
     }
 
-    let nextPlayer;
-    if (xIsNext) {
-      nextPlayer = "X";
-    } else {
-      nextPlayer = "O";
-    }
-    nextSquares[i] = nextPlayer;
+    nextSquares[i] = xIsNext ? "X" : "O";
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
   }
 
+  let winner = calculateWinner(squares);
+  let status;
+  if (squares.includes(null)) {
+    if (winner) {
+      status = `Congrats! Winner is ${winner}`;
+    } else {
+      status = `Next Player is ${xIsNext ? "X" : "O"}`;
+    }
+  } else {
+    winner
+      ? (status = `Congrats! Winner is ${winner}`)
+      : (status = "Match Draw");
+  }
   return (
     <div>
+      <h1>{status}</h1>
       <div className="flex">
         <Square squares={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square squares={squares[1]} onSquareClick={() => handleClick(1)} />
