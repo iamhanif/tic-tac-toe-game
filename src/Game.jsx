@@ -29,20 +29,26 @@ export default function Game() {
       description = "Start the game";
     }
     return (
-      <li key={move}>
+      <li
+        key={move}
+        className="sm:my-2  bg-black text-white border border-violet-950 px-2 rounded-md"
+      >
         <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
   });
 
   return (
-    <>
-      <div>
+    <div className="sm:flex justify-center mt-3">
+      <div
+        className="mt-2 mr-3
+      "
+      >
         <Board xIsNext={xIsNext} onPlay={onPlay} squares={currentSquares} />
       </div>
-      <div>
-        <ol>{moves}</ol>
+      <div className="text-lg mt-4 sm:ml-4 border border-gray-800 rounded-md p-3">
+        <ol className="">{moves}</ol>
       </div>
-    </>
+    </div>
   );
 }
