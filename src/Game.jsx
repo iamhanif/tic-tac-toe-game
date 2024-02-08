@@ -17,6 +17,9 @@ export default function Game() {
   }
 
   function jumpTo(move) {
+    if (move === 0) {
+      setHistory([history[move]]);
+    }
     setCurrentMove(move);
     setXIsNext(move % 2 === 0);
   }
