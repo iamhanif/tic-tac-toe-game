@@ -46,7 +46,7 @@ export default function Game() {
       >
         <Board xIsNext={xIsNext} onPlay={onPlay} squares={currentSquares} />
       </div>
-      <div className="text-lg mt-4 sm:ml-4 border border-gray-800 rounded-md p-3">
+      <div className="text-lg mt-4 sm:ml-4 border border-gray-100 rounded-md p-3">
         <ol className="">{moves}</ol>
       </div>
     </div>
